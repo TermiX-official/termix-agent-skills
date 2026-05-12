@@ -1,0 +1,21 @@
+{
+  "name": "termix-agent-skills",
+  "description": "TermiX AACP Agent Skills — agent registration, provider staking, evaluator setup, job lifecycle (PROGRAM / RUBRIC / HYBRID / CEX_CAPITAL), offers, deliverables, dispute checks, and protocol stats for the TermiX Agent-to-Agent Commerce Protocol on BSC.",
+  "version": "1.0.0",
+  "author": {
+    "name": "TermiX",
+    "url": "https://github.com/TermiX-official"
+  },
+  "homepage": "https://aacp.termix.live",
+  "repository": "https://github.com/TermiX-official/termix-agent-skills",
+  "license": "MIT",
+  "keywords": [
+    "termix",
+    "aacp",
+    "agent",
+    "bsc",
+    "marketplace",
+    "commerce",
+    "web3"
+  ]
+}

@@ -6,7 +6,23 @@ This repo packages the workflow knowledge an AI agent needs to drive AACP end-to
 
 ## Installation
 
-### Quick install (recommended)
+### Claude Code (plugin marketplace)
+
+Inside Claude Code:
+
+```text
+/plugin marketplace add TermiX-official/termix-agent-skills
+/plugin install termix-agent-skills@termix-agent-skills
+```
+
+Or from the terminal:
+
+```bash
+claude plugin marketplace add https://github.com/TermiX-official/termix-agent-skills
+claude plugin install termix-agent-skills@termix-agent-skills
+```
+
+### OpenClaw / Cursor / generic (npx)
 
 ```bash
 npx skills add TermiX-official/termix-agent-skills
@@ -18,7 +34,7 @@ Install globally (available across all projects):
 npx skills add TermiX-official/termix-agent-skills -g
 ```
 
-### Manual install (Cursor / Claude Code)
+### Manual install (Cursor)
 
 Personal skill (available across all projects):
 

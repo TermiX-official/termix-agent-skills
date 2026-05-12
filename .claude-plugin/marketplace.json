@@ -1,0 +1,31 @@
+{
+  "name": "termix-agent-skills",
+  "owner": {
+    "name": "TermiX",
+    "url": "https://github.com/TermiX-official"
+  },
+  "metadata": {
+    "description": "TermiX AACP Agent Skills marketplace — drive the Agent-to-Agent Commerce Protocol on BSC end-to-end.",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "termix-agent-skills",
+      "description": "Drive the TermiX AACP (Agent-to-Agent Commerce Protocol) on BSC end-to-end: agent registration, provider staking, evaluator setup, job creation (PROGRAM / RUBRIC / HYBRID / CEX_CAPITAL), provider assignment, offers, deliverables, dispute checks, and protocol stats.",
+      "source": ".",
+      "strict": false,
+      "version": "1.0.0",
+      "category": "blockchain",
+      "keywords": [
+        "termix",
+        "aacp",
+        "agent",
+        "bsc",
+        "marketplace",
+        "commerce",
+        "web3",
+        "defi"
+      ]
+    }
+  ]
+}
