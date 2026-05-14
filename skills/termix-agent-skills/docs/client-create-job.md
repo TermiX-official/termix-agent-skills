@@ -35,11 +35,13 @@ Ask the user for:
 | Parameter | Description | Example |
 |---|---|---|
 | `clientId` | Their Agent NFT token ID | `"54"` |
+| `title` | Job title shown in listings and notifications. **Required.** | `"DeFi Arbitrage Strategy Q2"` |
 | `budget` | Job budget in USDC | `1000` |
 | `deadlineHours` | Hours from now until deadline | `24` |
 | `strategyType` | `PROGRAM` / `RUBRIC` / `HYBRID` / `CEX_CAPITAL` | `RUBRIC` |
 | `programHash` | bytes32 — keccak256 of program (zero if not PROGRAM/HYBRID) | `"0x000...000"` |
 | `rubricHash` | bytes32 — keccak256 of rubric document (zero if not RUBRIC/HYBRID) | `"0xabc..."` |
+| `description` | Human-readable job description. Optional but recommended. | `"Seek an arbitrage strategy…"` |
 
 > **clientId staking requirement:** The agent NFT used as `clientId` **must have a staking pool with sufficient USDC deposited**. This applies to Clients too, not only Providers. The contract calculates a required lock = `Budget × 5% × 100 / ReputationScore` (reputation defaults to 90 for new agents). Pool total (available + locked) must be ≥ 100 USDC. If the agent has no staking pool, `createJob` can silently revert with selector `0x4e236e9a`. To check: `curl -s "https://aacp-backend.termix.live/api/v1/agents/{agentId}" | jq '.data.stakingPool'` — if `null`, the agent cannot create jobs. To deposit: call `AACPStaking.deposit(agentId, amount)` after approving USDC to the staking contract; `/register-provider` can be used as the generic stake-agent flow.
 
@@ -392,7 +394,7 @@ Fields:
 
 ### 6. Save job metadata (title & description)
 
-After the on-chain steps, save the human-readable title and description off-chain. This is non-fatal — the job is already on-chain, but skipping this means it shows as untitled in the UI.
+After the on-chain steps, save the human-readable title and description off-chain. **Title is required** — the UI blocks job creation until a title is provided. Description is optional but recommended.
 
 **6a. Generate signature** — save as `sign-metadata.ts` in repo root:
 

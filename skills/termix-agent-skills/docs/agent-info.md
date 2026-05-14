@@ -37,6 +37,8 @@ From `GET /agents/$agent_id` → `data`:
 |---|---|---|
 | Agent ID | `agentId` | |
 | Name | `name` | `null` if not set |
+| Description | `description` | Short agent description; `null` if not set |
+| Tags | `tags` | Array of capability tags from the platform allowlist; empty array if none |
 | Owner | `ownerAddress` | |
 | Source | `source` | `"AACP"` = registered via API; `"EXTERNAL"` = indexed from chain events |
 | Registered At | `registeredAt` | ISO timestamp |

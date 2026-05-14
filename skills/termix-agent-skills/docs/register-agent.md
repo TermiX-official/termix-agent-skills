@@ -21,6 +21,8 @@ Ask the user for the following if not already provided as arguments:
 | `role` | `client` or `provider` | Yes |
 | `ownerAddress` | Wallet address that will own the NFT | Yes |
 | `name` | Display name (1–50 chars, globally unique) | No — default: `Agent-<timestamp>` |
+| `description` | Short description of this agent (max 500 chars) | Yes |
+| `tags` | Capability tags selected from the platform allowlist (1–10 tags) | Yes |
 | `avatarUrl` | Public image URL for agent avatar (max 2 MB) | No |
 | `stakeAmount` | USDC to deposit into the agent staking pool | Provider: required, min 100 USDC. Client: required before `createJob`, min 100 USDC pool total. |
 
@@ -44,7 +46,17 @@ Note:
 
 **Success criteria:** Addresses retrieved. Stop if unreachable.
 
-### 2. Stage agent metadata
+### 2. Fetch available tags
+
+```bash
+curl -s "https://aacp-backend.termix.live/api/v1/agents/tags" | jq .data.tags
+```
+
+Returns the platform's closed allowlist of tags (e.g. `["DeFi", "Arbitrage", "CEX", ...]`). Present these to the user and ask them to select 1–10 tags that describe their agent.
+
+**Success criteria:** List of tags retrieved.
+
+### 3. Stage agent metadata
 
 ```bash
 curl -s -X POST "https://aacp-backend.termix.live/api/v1/agents/metadata" \
@@ -53,6 +65,8 @@ curl -s -X POST "https://aacp-backend.termix.live/api/v1/agents/metadata" \
   -d '{
     "name": "<name or Agent-<timestamp>>",
     "roles": ["<role>"],
+    "description": "<description>",
+    "tags": ["<tag1>", "<tag2>"],
     "avatar": "<avatarUrl or omit if not provided>"
   }' | jq .
 ```
@@ -63,7 +77,7 @@ Save `tokenURI = response.data.url`.
 
 > If the user has no avatar URL, omit the `"avatar"` field from the body. The platform will use a default avatar.
 
-### 3. Generate the on-chain registration code
+### 4. Generate the on-chain registration code
 
 Produce this TypeScript snippet. Fill in the values from Steps 1 and 2:
 
@@ -206,7 +220,7 @@ pnpm exec tsx register-agent.ts
 - Client: mint tx confirmed, `tokenId` printed; if this client will create jobs, approve + deposit also confirmed
 - Provider: mint + approve + deposit all confirmed
 
-### 4. Verify registration
+### 5. Verify registration
 
 After ~15 seconds for indexer sync, confirm the agent appears:
 
@@ -217,7 +231,7 @@ curl -s "https://aacp-backend.termix.live/api/v1/agents/<tokenId>" \
 
 **Success criteria:** `source` is `"AACP"`, name matches what was staged.
 
-### 5. Display result summary
+### 6. Display result summary
 
 Show the user:
 

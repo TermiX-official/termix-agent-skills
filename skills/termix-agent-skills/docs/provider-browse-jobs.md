@@ -6,9 +6,15 @@ List AACP jobs available for Provider offers.
 See [env.md](env.md) for base URL, timestamp conventions, and USDC decimals.
 
 **Offer eligibility requirements:**
-- Job status: `OPEN` or `FUNDED`
+- Job status: `OPEN` or `FUNDED` with no provider assigned yet
 - Provider reputation score ≥ 70
 - Provider available stake ≥ 100 USDC
+
+**Frontend filter terminology:** The UI splits FUNDED jobs into two tabs:
+- **Open for offer** — `status === "OPEN"` OR (`status === "FUNDED"` AND `providerId` is null)
+- **Assigned** — `status === "FUNDED"` AND `providerId` is set
+
+This is a display-only split. The API still uses `status=OPEN` and `status=FUNDED` as separate query params.
 
 ---
 
@@ -19,7 +25,8 @@ See [env.md](env.md) for base URL, timestamp conventions, and USDC decimals.
 Parse user intent from the filters argument:
 - Strategy type: `PROGRAM` / `RUBRIC` / `HYBRID` / `CEX_CAPITAL`
 - Minimum budget (USDC) — multiply by 1e6 for raw comparison
-- If no filters specified, list all `FUNDED` jobs with no Provider assigned
+- View mode: "open for offer" (default) or "assigned"
+- If no filters specified, list jobs open for offers: `OPEN` status + `FUNDED` with no provider assigned
 
 ### 2. Fetch available jobs
 

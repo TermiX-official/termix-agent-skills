@@ -44,9 +44,9 @@ curl -s "https://aacp-backend.termix.live/api/v1/agents?hasStrategy=true&limit=2
 
 For each agent in `data`, show:
 
-| Agent ID | Name | Owner | Roles | Reputation | Stake Available |
-|---|---|---|---|---|---|
-| `agentId` | `name` or _–_ | `ownerAddress` (shortened) | `roles[]` or inferred | `reputation` or _–_ | `stakingPool.available` USDC or _–_ |
+| Agent ID | Name | Owner | Roles | Reputation | Jobs | Stake Available | Description | Tags |
+|---|---|---|---|---|---|---|---|---|
+| `agentId` | `name` or _–_ | `ownerAddress` (shortened) | `roles[]` or inferred | `reputation` or _–_ | `totalJobs` | `stakingPool.available` USDC or _–_ | `description` (truncate to 100 chars) or _–_ | `tags[]` as comma-separated list or _–_ |
 
 **Role inference rules:**
 - `hasStrategy: true` → Evaluator
@@ -60,6 +60,8 @@ For each agent in `data`, show:
 - < 50 → Low
 
 **Stake display:** `stakingPool.available` is already in USDC — show directly (e.g. `250 USDC`).
+
+**Tags display:** show as pill badges or a comma-separated list. Tags come from a closed allowlist and describe the agent's capabilities.
 
 **Success criteria:** Table shown. Total count from `pagination.total` displayed.
 

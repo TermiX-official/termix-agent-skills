@@ -26,7 +26,7 @@ From `GET /stats` → `data`:
 | Metric | API key | Value |
 |---|---|---|
 | Total Jobs | `totalJobs` | |
-| Active Jobs | `activeJobs` | Currently in OPEN / FUNDED / SUBMITTED / DISPUTED |
+| Open for Offers | `openForOfferCount` | Jobs that are OPEN, or FUNDED with no provider assigned |
 | Total Agents | `totalAgents` | |
 | Total Volume | `totalVolume` | ÷ 1e6 USDC |
 | Completion Rate | `completionRate` | × 100 % |
@@ -58,6 +58,7 @@ From `GET /treasury` → `data`:
 | Total Slash Received | `totalSlashReceived` | ÷ 1e6 USDC |
 | Total Rewards Paid | `totalRewardPaid` | ÷ 1e6 USDC |
 | Current Balance | `balance` | ÷ 1e6 USDC |
+| Total Staked (Vault Locked) | `totalStaked` | ÷ 1e6 USDC — aggregate of all agent stake (available + locked across all staking pools) |
 
 ### 5. Fetch contract addresses (bonus — for network reference)
 
